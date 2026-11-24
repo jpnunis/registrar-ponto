@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrar Ponto</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/logo-56586a.png">
+</head>
+<body>
+  <main class="container">
+    <img src="assets/logo-56586a.png" alt="Logo Registrar Ponto" class="logo" />
+    <h1>Registrar Ponto</h1>
+    <p class="subtitle">Bem-vindo ao portal do colaborador</p>
+
+    <section class="card">
+      <div id="login-error" style="display:none; background:#fef2f2; color:#dc2626; border-radius:10px; padding:10px 14px; margin-bottom:12px; font-size:0.9rem; font-weight:600;">
+        CPF ou senha incorretos. Tente novamente.
+      </div>
+
+      <label>CPF</label>
+      <div class="input-box">
+        <input id="input-cpf" type="text" placeholder="000.000.000-00" maxlength="14" />
+      </div>
+
+      <label>Senha</label>
+      <div class="input-box">
+        <input id="input-senha" type="password" placeholder="••••••••" />
+      </div>
+
+      <a href="#" class="forgot" onclick="esqueceuSenha(); return false;">Esqueceu sua senha?</a>
+      <p style="font-size:0.78rem;color:#94a3b8;text-align:center;margin-top:8px;">Demonstração: CPF 123.456.789-00 · Senha 1234</p>
+
+      <button id="btn-entrar" onclick="fazerLogin()">Entrar</button>
+
+      <hr />
+      <p class="help-title">Precisa de ajuda com o acesso?</p>
+      <div class="help-buttons"></div>
+    </section>
+
+    <p class="status">
+      <span></span> Sistemas Operacionais: <strong>Online</strong>
+    </p>
+  </main>
+
+  <footer>
+    © 2026 Registrar Ponto - Projeto Acadêmico. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // Formata CPF enquanto digita
+    document.getElementById('input-cpf').addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      v = v.replace(/(\d{3})(\d)/, '$1.$2');
+      v = v.replace(/(\d{3})(\d)/, '$1.$2');
+      v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      e.target.value = v;
+    });
+
+    // Permite login com Enter
+    document.getElementById('input-senha').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') fazerLogin();
+    });
+
+    function esqueceuSenha() {
+      const cpf = document.getElementById('input-cpf').value;
+      if (!cpf) {
+        alert('Digite seu CPF primeiro, depois clique em "Esqueceu sua senha?".');
+        return;
+      }
+      alert('✅ Instruções de redefinição de senha foram enviadas para o e-mail cadastrado no RH.');
+    }
+
+    function fazerLogin() {
+      const cpf = document.getElementById('input-cpf').value.replace(/\D/g, '');
+      const senha = document.getElementById('input-senha').value;
+      const erro = document.getElementById('login-error');
+      const btn = document.getElementById('btn-entrar');
+
+      // CPF e senha válidos para o projeto
+      const CPF_VALIDO = '12345678900';
+      const SENHA_VALIDA = '1234';
+
+      if (cpf === CPF_VALIDO && senha === SENHA_VALIDA) {
+        btn.textContent = 'Entrando...';
+        btn.style.background = '#16a34a';
+        erro.style.display = 'none';
+        setTimeout(() => { window.location.href = 'baterponto.html'; }, 600);
+      } else {
+        erro.style.display = 'block';
+        document.getElementById('input-senha').value = '';
+        document.getElementById('input-senha').focus();
+      }
+    }
+  </script>
+</body>
+</html>

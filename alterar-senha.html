@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alterar Senha - Registrar Ponto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .senha-container { max-width: 500px; margin: auto; padding: 20px; }
+    .senha-header { margin-bottom: 24px; }
+    .senha-header h1 { font-size: 1.6rem; font-weight: 700; color: #1e293b; }
+    .senha-header p { color: #64748b; font-size: 0.95rem; }
+    .senha-card { background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .campo { margin-bottom: 16px; }
+    .campo label { display:block; font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:6px; }
+    .campo-input { position:relative; }
+    .campo-input input {
+      width:100%; border:1px solid #e2e8f0; border-radius:10px;
+      padding:12px 44px 12px 14px; font-size:0.9rem; color:#1e293b;
+      outline:none; background:#f8fafc; transition:border-color 0.2s; font-family:inherit;
+    }
+    .campo-input input:focus { border-color:#2563eb; background:#fff; }
+    .toggle-senha { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94a3b8; cursor:pointer; width:auto; margin:0; padding:0; font-size:0.95rem; }
+    .requisitos { background:#f8fafc; border-radius:10px; padding:12px 14px; margin-bottom:20px; }
+    .requisitos p { font-size:0.8rem; color:#64748b; margin-bottom:6px; font-weight:600; }
+    .req-item { font-size:0.8rem; color:#94a3b8; display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+    .req-item.ok { color:#16a34a; }
+    .req-item i { font-size:0.75rem; width:14px; }
+    .btn-salvar { width:100%; background:#2563eb; color:#fff; border:none; padding:14px; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:background 0.2s; }
+    .btn-salvar:hover { background:#1d4ed8; }
+    .btn-salvar:disabled { background:#94a3b8; cursor:not-allowed; }
+    .feedback-ok { display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:12px; padding:14px; text-align:center; font-weight:600; margin-top:14px; }
+    .erro-msg { display:none; background:#fef2f2; color:#dc2626; border:1px solid #fecaca; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-bottom:14px; }
+  </style>
+</head>
+<body>
+  <main class="senha-container">
+    <div class="senha-header">
+      <h1>Alterar Senha</h1>
+      <p>Crie uma nova senha segura para sua conta</p>
+    </div>
+
+    <div class="senha-card">
+      <div id="erro-msg" class="erro-msg"></div>
+
+      <div class="campo">
+        <label>Senha atual</label>
+        <div class="campo-input">
+          <input type="password" id="senha-atual" placeholder="••••••••" oninput="validar()" />
+          <button class="toggle-senha" onclick="toggleSenha('senha-atual', this)" tabindex="-1">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Nova senha</label>
+        <div class="campo-input">
+          <input type="password" id="nova-senha" placeholder="••••••••" oninput="validar()" />
+          <button class="toggle-senha" onclick="toggleSenha('nova-senha', this)" tabindex="-1">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="requisitos">
+        <p>A nova senha deve ter:</p>
+        <div class="req-item" id="req-len"><i class="fa-solid fa-circle"></i> Mínimo de 6 caracteres</div>
+        <div class="req-item" id="req-num"><i class="fa-solid fa-circle"></i> Pelo menos um número</div>
+      </div>
+
+      <div class="campo">
+        <label>Confirmar nova senha</label>
+        <div class="campo-input">
+          <input type="password" id="conf-senha" placeholder="••••••••" oninput="validar()" />
+          <button class="toggle-senha" onclick="toggleSenha('conf-senha', this)" tabindex="-1">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-salvar" id="btn-salvar" onclick="salvar()" disabled>Salvar nova senha</button>
+      <div class="feedback-ok" id="feedback-ok">✅ Senha alterada com sucesso!</div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="baterponto.html">Ponto</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="perfil.html" class="active">Perfil</a>
+  </nav>
+
+  <script>
+    function toggleSenha(id, btn) {
+      const input = document.getElementById(id);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa-solid fa-eye';
+      }
+    }
+
+    function validar() {
+      const nova = document.getElementById('nova-senha').value;
+      const conf = document.getElementById('conf-senha').value;
+      const atual = document.getElementById('senha-atual').value;
+      const lenOk = nova.length >= 6;
+      const numOk = /\d/.test(nova);
+
+      const reqLen = document.getElementById('req-len');
+      const reqNum = document.getElementById('req-num');
+      reqLen.className = 'req-item' + (lenOk ? ' ok' : '');
+      reqLen.querySelector('i').className = lenOk ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle';
+      reqNum.className = 'req-item' + (numOk ? ' ok' : '');
+      reqNum.querySelector('i').className = numOk ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle';
+
+      const tudo = atual.length > 0 && lenOk && numOk && nova === conf;
+      document.getElementById('btn-salvar').disabled = !tudo;
+    }
+
+    function salvar() {
+      const atual = document.getElementById('senha-atual').value;
+      const erro = document.getElementById('erro-msg');
+      if (atual !== '1234') {
+        erro.textContent = 'Senha atual incorreta.';
+        erro.style.display = 'block';
+        return;
+      }
+      erro.style.display = 'none';
+      document.getElementById('feedback-ok').style.display = 'block';
+      document.getElementById('btn-salvar').disabled = true;
+      document.getElementById('senha-atual').value = '';
+      document.getElementById('nova-senha').value = '';
+      document.getElementById('conf-senha').value = '';
+    }
+  </script>
+</body>
+</html>

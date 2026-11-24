@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificações - Registrar Ponto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .notif-container { max-width: 500px; margin: auto; padding: 20px; }
+    .notif-header { margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end; }
+    .notif-header h1 { font-size: 1.6rem; font-weight: 700; color: #1e293b; }
+    .notif-header p { color: #64748b; font-size: 0.85rem; }
+    .mark-all { font-size:0.82rem; color:#2563eb; background:none; border:none; cursor:pointer; font-weight:600; width:auto; margin:0; padding:0; }
+    .notif-group-title { font-size:0.78rem; font-weight:700; color:#94a3b8; letter-spacing:0.08em; text-transform:uppercase; margin: 16px 0 8px; }
+    .notif-item { background:#fff; border-radius:16px; padding:16px 18px; display:flex; gap:14px; align-items:flex-start; margin-bottom:10px; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:relative; cursor:pointer; transition: opacity 0.2s; }
+    .notif-item.lida { opacity: 0.55; }
+    .notif-dot { position:absolute; top:16px; right:16px; width:9px; height:9px; background:#2563eb; border-radius:50%; }
+    .notif-item.lida .notif-dot { display:none; }
+    .notif-icon { width:42px; height:42px; min-width:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1rem; }
+    .notif-icon.green  { background:#f0fdf4; color:#16a34a; }
+    .notif-icon.yellow { background:#fffbeb; color:#b45309; }
+    .notif-icon.blue   { background:#eff6ff; color:#2563eb; }
+    .notif-icon.red    { background:#fef2f2; color:#dc2626; }
+    .notif-title { font-size:0.9rem; font-weight:700; color:#1e293b; margin-bottom:3px; }
+    .notif-body  { font-size:0.82rem; color:#64748b; line-height:1.4; }
+    .notif-time  { font-size:0.75rem; color:#94a3b8; margin-top:4px; }
+    .empty-state { text-align:center; padding:40px 20px; color:#94a3b8; }
+    .empty-state i { font-size:2.5rem; margin-bottom:12px; display:block; }
+  </style>
+</head>
+<body>
+  <main class="notif-container">
+    <div class="notif-header">
+      <div>
+        <h1>Notificações</h1>
+        <p id="count-label">3 não lidas</p>
+      </div>
+      <button class="mark-all" onclick="marcarTodas()">Marcar todas como lidas</button>
+    </div>
+
+    <p class="notif-group-title">Hoje</p>
+
+    <div class="notif-item" id="n1" onclick="marcarLida('n1')">
+      <div class="notif-dot"></div>
+      <div class="notif-icon green"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+      <div>
+        <div class="notif-title">Entrada registrada</div>
+        <div class="notif-body">Seu ponto de entrada foi registrado com sucesso.</div>
+        <div class="notif-time">Hoje, 08:02</div>
+      </div>
+    </div>
+
+    <div class="notif-item" id="n2" onclick="marcarLida('n2')">
+      <div class="notif-dot"></div>
+      <div class="notif-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <div>
+        <div class="notif-title">Lembrete: Intervalo</div>
+        <div class="notif-body">Você ainda não registrou o intervalo de almoço.</div>
+        <div class="notif-time">Hoje, 12:05</div>
+      </div>
+    </div>
+
+    <div class="notif-item" id="n3" onclick="marcarLida('n3')">
+      <div class="notif-dot"></div>
+      <div class="notif-icon blue"><i class="fa-solid fa-chart-simple"></i></div>
+      <div>
+        <div class="notif-title">Resumo semanal disponível</div>
+        <div class="notif-body">Seu relatório de horas da semana está pronto para consulta.</div>
+        <div class="notif-time">Hoje, 09:00</div>
+      </div>
+    </div>
+
+    <p class="notif-group-title">Esta semana</p>
+
+    <div class="notif-item lida" id="n4" onclick="marcarLida('n4')">
+      <div class="notif-icon green"><i class="fa-solid fa-circle-check"></i></div>
+      <div>
+        <div class="notif-title">Jornada completa</div>
+        <div class="notif-body">Parabéns! Você completou 40h na semana passada.</div>
+        <div class="notif-time">Segunda, 18:01</div>
+      </div>
+    </div>
+
+    <div class="notif-item lida" id="n5" onclick="marcarLida('n5')">
+      <div class="notif-icon red"><i class="fa-solid fa-clock-rotate-left"></i></div>
+      <div>
+        <div class="notif-title">Ajuste de ponto aprovado</div>
+        <div class="notif-body">Sua solicitação de ajuste do dia 23/06 foi aprovada pelo RH.</div>
+        <div class="notif-time">Terça, 14:30</div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="baterponto.html">Ponto</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="perfil.html">Perfil</a>
+  </nav>
+
+  <script>
+    function marcarLida(id) {
+      const el = document.getElementById(id);
+      el.classList.add('lida');
+      atualizarContador();
+    }
+    function marcarTodas() {
+      document.querySelectorAll('.notif-item').forEach(el => el.classList.add('lida'));
+      atualizarContador();
+    }
+    function atualizarContador() {
+      const naoLidas = document.querySelectorAll('.notif-item:not(.lida)').length;
+      document.getElementById('count-label').textContent = naoLidas > 0 ? naoLidas + ' não lidas' : 'Tudo em dia ✅';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte - Registrar Ponto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .suporte-container { max-width: 500px; margin: auto; padding: 20px; }
+    .suporte-header { margin-bottom: 24px; }
+    .suporte-header h1 { font-size: 1.6rem; font-weight: 700; color: #1e293b; }
+    .suporte-header p { color: #64748b; font-size: 0.95rem; }
+    .suporte-card { background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 16px; }
+    .suporte-card label { display: block; font-weight: 600; font-size: 0.88rem; color: #374151; margin-bottom: 6px; margin-top: 16px; }
+    .suporte-card label:first-of-type { margin-top: 0; }
+    .suporte-card input, .suporte-card select, .suporte-card textarea {
+      width: 100%; border: 1px solid #e2e8f0; border-radius: 10px;
+      padding: 12px 14px; font-size: 0.9rem; color: #1e293b;
+      font-family: inherit; outline: none; background: #f8fafc;
+      transition: border-color 0.2s;
+    }
+    .suporte-card input:focus, .suporte-card select:focus, .suporte-card textarea:focus {
+      border-color: #2563eb; background: #fff;
+    }
+    .suporte-card textarea { resize: vertical; min-height: 100px; }
+    .btn-enviar {
+      width: 100%; background: #2563eb; color: #fff; border: none;
+      padding: 14px; border-radius: 12px; font-size: 1rem;
+      font-weight: 600; cursor: pointer; margin-top: 20px; transition: background 0.2s;
+    }
+    .btn-enviar:hover { background: #1d4ed8; }
+    .feedback-ok { display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:12px; padding:14px; text-align:center; font-weight:600; margin-top:14px; }
+    .contato-card { background:#eff6ff; border-radius:20px; padding:20px 24px; display:flex; flex-direction:column; gap:12px; }
+    .contato-item { display:flex; align-items:center; gap:12px; color:#1e40af; font-size:0.9rem; font-weight:500; }
+    .contato-item i { font-size:1rem; width:20px; text-align:center; }
+  </style>
+</head>
+<body>
+  <main class="suporte-container">
+    <div class="suporte-header">
+      <h1>Suporte Técnico</h1>
+      <p>Abra um chamado ou entre em contato</p>
+    </div>
+
+    <div class="suporte-card">
+      <label>Assunto</label>
+      <select id="assunto">
+        <option value="">Selecione o motivo...</option>
+        <option>Erro ao bater ponto</option>
+        <option>Registro incorreto</option>
+        <option>Esqueci minha senha</option>
+        <option>Ponto não registrado</option>
+        <option>Outro</option>
+      </select>
+
+      <label>Descrição</label>
+      <textarea id="descricao" placeholder="Descreva o problema com detalhes..."></textarea>
+
+      <button class="btn-enviar" onclick="enviarChamado()">
+        <i class="fa-solid fa-paper-plane"></i> Enviar Chamado
+      </button>
+      <div class="feedback-ok" id="feedback-ok">
+        ✅ Chamado enviado! Nossa equipe entrará em contato em breve.
+      </div>
+    </div>
+
+    <div class="contato-card">
+      <div class="contato-item"><i class="fa-solid fa-phone"></i> (61) 3966-1200</div>
+      <div class="contato-item"><i class="fa-solid fa-envelope"></i> suporte@registrarponto.com.br</div>
+      <div class="contato-item"><i class="fa-solid fa-clock"></i> Seg–Sex, 08h–18h</div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="baterponto.html">Ponto</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="perfil.html">Perfil</a>
+  </nav>
+
+  <script>
+    function enviarChamado() {
+      const assunto = document.getElementById('assunto').value;
+      const descricao = document.getElementById('descricao').value.trim();
+      if (!assunto) { alert('Por favor, selecione o assunto.'); return; }
+      if (!descricao) { alert('Por favor, descreva o problema.'); return; }
+      document.getElementById('feedback-ok').style.display = 'block';
+      document.getElementById('assunto').value = '';
+      document.getElementById('descricao').value = '';
+    }
+  </script>
+</body>
+</html>

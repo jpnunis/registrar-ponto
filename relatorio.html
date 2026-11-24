@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório de Ponto</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-layout">
+<main class="relatorio-container">
+<p class="breadcrumb">Main - Supervisor Registro de Ponto</p>
+
+<h1>Relatório de Ponto</h1>
+<p class="subtitle">Visualize seus registros detalhados e o fechamento do período.</p>
+
+<div class="line"></div>
+
+<section class="filter-card">
+<label>Data Inicial</label>
+<input type="text" value="05/01/2026">
+
+<label>Data Final</label>
+<input type="text" value="05/31/2026">
+
+<button onclick="filtrar()">FILTRAR</button>
+<div id="filtro-msg" style="display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px;"></div>
+<script>
+function filtrar() {
+  const di = document.querySelectorAll('.filter-card input')[0].value;
+  const df = document.querySelectorAll('.filter-card input')[1].value;
+  const msg = document.getElementById('filtro-msg');
+  msg.textContent = '🔍 Exibindo registros de ' + di + ' até ' + df;
+  msg.style.display = 'block';
+}
+</script>
+</section>
+
+<h2>REGISTROS RECENTES</h2>
+
+<section class="record-card">
+<div class="record-header">
+<h3>29/05/2026</h3>
+<span>Sexta-feira</span>
+</div>
+
+<div class="times">
+<div><p>Entrada</p><strong>08:00</strong></div>
+<div><p>Saída Almoço</p><strong>12:00</strong></div>
+<div><p>Retorno</p><strong>13:00</strong></div>
+<div><p>Saída</p><strong>17:30</strong></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="record-footer">
+<p><span></span>Status: Regular</p>
+<div>
+<small>Total trabalhado</small>
+<strong>8h 30m</strong>
+</div>
+</div>
+</section>
+
+<section class="record-card">
+<div class="record-header">
+<h3>28/05/2026</h3>
+<span>Quinta-feira</span>
+</div>
+
+<div class="times">
+<div><p>Entrada</p><strong>07:55</strong></div>
+<div><p>Saída Almoço</p><strong>12:00</strong></div>
+<div><p>Retorno</p><strong>13:00</strong></div>
+<div><p>Saída</p><strong>17:40</strong></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="record-footer">
+<p><span></span>Status: Regular</p>
+<div>
+<small>Total trabalhado</small>
+<strong>8h 35m</strong>
+</div>
+</div>
+</section>
+</main>
+
+<aside class="sidebar-right">
+<p class="aside-title">Aside</p>
+
+<div class="profile-box">
+<div class="avatar">JPN</div>
+<div>
+<h3>João Pedro Nunis</h3>
+<p>ID: 45892</p>
+<span>Status: online</span>
+</div>
+</div>
+
+<div class="sidebar-line"></div>
+
+<nav class="sidebar-menu">
+<a href="index.html" class="logout">Sair da Conta</a>
+<a href="relatorio.html" class="active">Relatórios</a>
+<a href="#">Ajustes do Ponto</a>
+<a href="notificacoes.html">Notificações</a>
+<a href="suporte.html">Suporte</a>
+</nav>
+</aside>
+</div>
+
+<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a></nav></body>
+</html>

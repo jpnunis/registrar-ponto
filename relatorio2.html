@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo do Mês</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="month-summary">
+        <h2>RESUMO DO MÊS</h2>
+
+        <div class="summary-card">
+            <div class="summary-row">
+                <div>
+                    <p>DIAS TRABALHADOS</p>
+                    <strong>22</strong>
+                </div>
+                <span class="square blue"></span>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="summary-row">
+                <div>
+                    <p>HORAS TRABALHADAS</p>
+                    <strong>176h</strong>
+                </div>
+                <span class="square gray"></span>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="summary-row">
+                <div>
+                    <p>SALDO DE HORAS</p>
+                    <strong class="green-text">+4h 30m</strong>
+                </div>
+                <span class="square green"></span>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="summary-row">
+                <div>
+                    <p>FALTAS</p>
+                    <strong>0</strong>
+                </div>
+                <span class="square red"></span>
+            </div>
+
+            <button class="export-btn" onclick="exportar()">EXPORTAR PDF</button>
+            <div id="export-msg" style="display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px; text-align:center;"></div>
+            <script>
+            function exportar() {
+              const msg = document.getElementById('export-msg');
+              msg.textContent = '✅ Relatório gerado! Em um sistema real, o PDF seria baixado automaticamente.';
+              msg.style.display = 'block';
+              setTimeout(() => { msg.style.display = 'none'; }, 4000);
+            }
+            </script>
+        </div>
+
+        <div class="support-card">
+            <h3>Suporte Técnico</h3>
+            <p>Problemas com seu registro? Nossa equipe está disponível 24/7.</p>
+            <a href="suporte.html">Abrir chamado →</a>
+        </div>
+
+
+    </section>
+
+<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a></nav>
+</body>
+</html>
