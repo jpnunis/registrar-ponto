@@ -6,6 +6,7 @@
 <title>Relatório de Ponto</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="style.css">
+  <script src="acessibilidade.js"></script>
 </head>
 <body>
 
@@ -19,14 +20,14 @@
 <div class="line"></div>
 
 <section class="filter-card">
-<label>Data Inicial</label>
-<input type="text" value="05/01/2026">
+<label for="data-ini">Data Inicial</label>
+<input id="data-ini" type="text" value="01/05/2026">
 
-<label>Data Final</label>
-<input type="text" value="05/31/2026">
+<label for="data-fim">Data Final</label>
+<input id="data-fim" type="text" value="31/05/2026">
 
 <button onclick="filtrar()">FILTRAR</button>
-<div id="filtro-msg" style="display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px;"></div>
+<div id="filtro-msg" style="display:none; background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px;"></div>
 <script>
 function filtrar() {
   const di = document.querySelectorAll('.filter-card input')[0].value;
@@ -113,5 +114,10 @@ function filtrar() {
 </aside>
 </div>
 
-<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a></nav></body>
+<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a><a href="ajuda.html">Ajuda</a>
+  </nav>
+  <footer class="rodape">
+    <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
+    <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
+  </footer></body>
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Ajuda - Registrar Ponto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="acessibilidade.js"></script>
+</head>
+<body>
+  <main class="ajuda-container">
+    <h1 class="ajuda-titulo">Central de Ajuda</h1>
+    <p class="subtitle">Tudo o que você precisa saber para usar o Registrar Ponto</p>
+
+    <!-- Carrossel de imagens -->
+    <section class="carrossel" aria-roledescription="carrossel" aria-label="Destaques do sistema">
+      <div class="slides" aria-live="polite"><figure class="slide"><img src="assets/slide-1.svg" alt="Bata o ponto em um toque"><figcaption>Bata o ponto em um toque</figcaption></figure><figure class="slide" hidden><img src="assets/slide-2.svg" alt="Acompanhe suas horas"><figcaption>Acompanhe suas horas</figcaption></figure><figure class="slide" hidden><img src="assets/slide-3.svg" alt="Seus dados protegidos"><figcaption>Seus dados protegidos</figcaption></figure></div>
+      <div class="car-ctrl">
+        <button type="button" id="car-prev" aria-label="Slide anterior">‹</button>
+        <button type="button" id="car-play" aria-label="Pausar rotação automática">Pausar</button>
+        <button type="button" id="car-next" aria-label="Próximo slide">›</button>
+      </div>
+    </section>
+
+    <!-- Cartões explicativos -->
+    <h2>Como funciona</h2>
+    <div class="passos">
+      <article class="passo"><span>1</span><h3>Entre</h3><p>Use seu CPF e sua senha na tela inicial.</p></article>
+      <article class="passo"><span>2</span><h3>Registre</h3><p>Toque no botão para marcar cada etapa da jornada.</p></article>
+      <article class="passo"><span>3</span><h3>Acompanhe</h3><p>Veja seus horários e saldo nos relatórios.</p></article>
+    </div>
+
+    <!-- Abas de pesquisa -->
+    <h2>Perguntas frequentes</h2>
+    <label for="busca">Pesquisar</label>
+    <input id="busca" type="search" class="busca" placeholder="Ex.: senha, ponto, relatório">
+    <div class="abas" role="tablist" aria-label="Categorias">
+      <button role="tab" aria-selected="true" data-cat="todas">Todas</button>
+      <button role="tab" aria-selected="false" data-cat="ponto">Ponto</button>
+      <button role="tab" aria-selected="false" data-cat="conta">Conta</button>
+      <button role="tab" aria-selected="false" data-cat="relatorios">Relatórios</button>
+    </div>
+    <p id="contagem" class="contagem" role="status"></p>
+    <div id="faq"><article class="faq-card" data-cat="ponto"><h3>Como registro meu ponto?</h3><p>Na tela Ponto, toque no botão central. Ele registra, em ordem, entrada, intervalo, retorno e saída.</p></article><article class="faq-card" data-cat="ponto"><h3>Esqueci de bater o ponto. E agora?</h3><p>Abra um chamado em Suporte, escolha "Ponto não registrado" e descreva o horário correto.</p></article><article class="faq-card" data-cat="ponto"><h3>O que é o NFC?</h3><p>É a aproximação do celular para registrar o ponto sem tocar no botão.</p></article><article class="faq-card" data-cat="conta"><h3>Como altero minha senha?</h3><p>Vá em Perfil, depois Alterar Senha. A nova senha precisa de 6 caracteres e um número.</p></article><article class="faq-card" data-cat="conta"><h3>Esqueci minha senha.</h3><p>Na tela de login, digite o CPF e use "Esqueceu sua senha?".</p></article><article class="faq-card" data-cat="relatorios"><h3>Onde vejo meu histórico?</h3><p>Na aba Relatórios, use o filtro por data. O resumo do mês mostra dias, horas e saldo.</p></article><article class="faq-card" data-cat="relatorios"><h3>Como exporto meu relatório?</h3><p>No Resumo do Mês, use o botão Exportar PDF.</p></article></div>
+  </main>
+  <nav class="bottom-nav"><a href="baterponto.html">Ponto</a><a href="relatorio.html">Relatórios</a><a href="perfil.html">Perfil</a><a href="ajuda.html" class="active">Ajuda</a>
+  </nav>
+  <footer class="rodape">
+    <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
+    <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
+  </footer>
+  <script>
+    // ----- Carrossel -----
+    const slides = [...document.querySelectorAll('.slide')];
+    let atual = 0, tocando = !matchMedia('(prefers-reduced-motion: reduce)').matches, timer;
+    function ir(n) {
+      atual = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => s.hidden = i !== atual);
+    }
+    function ciclo() { clearInterval(timer); if (tocando) timer = setInterval(() => ir(atual + 1), 5000); }
+    document.getElementById('car-prev').onclick = () => ir(atual - 1);
+    document.getElementById('car-next').onclick = () => ir(atual + 1);
+    const btnPlay = document.getElementById('car-play');
+    btnPlay.onclick = () => {
+      tocando = !tocando; btnPlay.textContent = tocando ? 'Pausar' : 'Reproduzir';
+      btnPlay.setAttribute('aria-label', tocando ? 'Pausar rotação automática' : 'Retomar rotação automática'); ciclo();
+    };
+    btnPlay.textContent = tocando ? 'Pausar' : 'Reproduzir';
+    ciclo();
+
+    // ----- Abas + pesquisa -----
+    let cat = 'todas';
+    const busca = document.getElementById('busca');
+    function filtrar() {
+      const termo = busca.value.trim().toLowerCase();
+      let n = 0;
+      document.querySelectorAll('.faq-card').forEach(c => {
+        const ok = (cat === 'todas' || c.dataset.cat === cat) && c.textContent.toLowerCase().includes(termo);
+        c.hidden = !ok; if (ok) n++;
+      });
+      document.getElementById('contagem').textContent = n ? n + ' resultado(s)' : 'Nenhum resultado encontrado.';
+    }
+    document.querySelectorAll('.abas [role=tab]').forEach(b => b.onclick = () => {
+      cat = b.dataset.cat;
+      document.querySelectorAll('.abas [role=tab]').forEach(x => x.setAttribute('aria-selected', x === b));
+      filtrar();
+    });
+    busca.addEventListener('input', filtrar);
+    filtrar();
+  </script>
+</body>
+</html>

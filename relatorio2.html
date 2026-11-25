@@ -6,6 +6,7 @@
     <title>Resumo do Mês</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
+  <script src="acessibilidade.js"></script>
 </head>
 <body>
 
@@ -52,7 +53,7 @@
             </div>
 
             <button class="export-btn" onclick="exportar()">EXPORTAR PDF</button>
-            <div id="export-msg" style="display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px; text-align:center;"></div>
+            <div id="export-msg" style="display:none; background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-top:10px; text-align:center;"></div>
             <script>
             function exportar() {
               const msg = document.getElementById('export-msg');
@@ -72,6 +73,11 @@
 
     </section>
 
-<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a></nav>
+<nav class="bottom-nav"><a href="baterponto.html">Ponto</a> <a href="relatorio.html" class="active">Relatórios</a> <a href="perfil.html">Perfil</a><a href="ajuda.html">Ajuda</a>
+  </nav>
+  <footer class="rodape">
+    <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
+    <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
+  </footer>
 </body>
 </html>

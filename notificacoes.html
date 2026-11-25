@@ -10,24 +10,25 @@
     .notif-container { max-width: 500px; margin: auto; padding: 20px; }
     .notif-header { margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end; }
     .notif-header h1 { font-size: 1.6rem; font-weight: 700; color: #1e293b; }
-    .notif-header p { color: #64748b; font-size: 0.85rem; }
+    .notif-header p { color: #526077; font-size: 0.85rem; }
     .mark-all { font-size:0.82rem; color:#2563eb; background:none; border:none; cursor:pointer; font-weight:600; width:auto; margin:0; padding:0; }
-    .notif-group-title { font-size:0.78rem; font-weight:700; color:#94a3b8; letter-spacing:0.08em; text-transform:uppercase; margin: 16px 0 8px; }
+    .notif-group-title { font-size:0.78rem; font-weight:700; color:#526077; letter-spacing:0.08em; text-transform:uppercase; margin: 16px 0 8px; }
     .notif-item { background:#fff; border-radius:16px; padding:16px 18px; display:flex; gap:14px; align-items:flex-start; margin-bottom:10px; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:relative; cursor:pointer; transition: opacity 0.2s; }
-    .notif-item.lida { opacity: 0.55; }
+    .notif-item.lida { opacity: 0.85; }
     .notif-dot { position:absolute; top:16px; right:16px; width:9px; height:9px; background:#2563eb; border-radius:50%; }
     .notif-item.lida .notif-dot { display:none; }
     .notif-icon { width:42px; height:42px; min-width:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1rem; }
-    .notif-icon.green  { background:#f0fdf4; color:#16a34a; }
+    .notif-icon.green  { background:#f0fdf4; color:#15803d; }
     .notif-icon.yellow { background:#fffbeb; color:#b45309; }
     .notif-icon.blue   { background:#eff6ff; color:#2563eb; }
-    .notif-icon.red    { background:#fef2f2; color:#dc2626; }
+    .notif-icon.red    { background:#fef2f2; color:#b91c1c; }
     .notif-title { font-size:0.9rem; font-weight:700; color:#1e293b; margin-bottom:3px; }
-    .notif-body  { font-size:0.82rem; color:#64748b; line-height:1.4; }
-    .notif-time  { font-size:0.75rem; color:#94a3b8; margin-top:4px; }
-    .empty-state { text-align:center; padding:40px 20px; color:#94a3b8; }
+    .notif-body  { font-size:0.82rem; color:#526077; line-height:1.4; }
+    .notif-time  { font-size:0.75rem; color:#526077; margin-top:4px; }
+    .empty-state { text-align:center; padding:40px 20px; color:#526077; }
     .empty-state i { font-size:2.5rem; margin-bottom:12px; display:block; }
   </style>
+  <script src="acessibilidade.js"></script>
 </head>
 <body>
   <main class="notif-container">
@@ -96,7 +97,12 @@
     <a href="baterponto.html">Ponto</a>
     <a href="relatorio.html">Relatórios</a>
     <a href="perfil.html">Perfil</a>
+  <a href="ajuda.html">Ajuda</a>
   </nav>
+  <footer class="rodape">
+    <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
+    <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
+  </footer>
 
   <script>
     function marcarLida(id) {

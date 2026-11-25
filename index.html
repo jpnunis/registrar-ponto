@@ -6,6 +6,7 @@
   <title>Registrar Ponto</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/logo-56586a.png">
+  <script src="acessibilidade.js"></script>
 </head>
 <body>
   <main class="container">
@@ -14,28 +15,28 @@
     <p class="subtitle">Bem-vindo ao portal do colaborador</p>
 
     <section class="card">
-      <div id="login-error" style="display:none; background:#fef2f2; color:#dc2626; border-radius:10px; padding:10px 14px; margin-bottom:12px; font-size:0.9rem; font-weight:600;">
+      <div id="login-error" style="display:none; background:#fef2f2; color:#b91c1c; border-radius:10px; padding:10px 14px; margin-bottom:12px; font-size:0.9rem; font-weight:600;">
         CPF ou senha incorretos. Tente novamente.
       </div>
 
-      <label>CPF</label>
+      <label for="input-cpf">CPF</label>
       <div class="input-box">
         <input id="input-cpf" type="text" placeholder="000.000.000-00" maxlength="14" />
       </div>
 
-      <label>Senha</label>
+      <label for="input-senha">Senha</label>
       <div class="input-box">
         <input id="input-senha" type="password" placeholder="••••••••" />
       </div>
 
       <a href="#" class="forgot" onclick="esqueceuSenha(); return false;">Esqueceu sua senha?</a>
-      <p style="font-size:0.78rem;color:#94a3b8;text-align:center;margin-top:8px;">Demonstração: CPF 123.456.789-00 · Senha 1234</p>
+      <p style="font-size:0.78rem;color:#526077;text-align:center;margin-top:8px;">Demonstração: CPF 123.456.789-00 · Senha 1234</p>
 
       <button id="btn-entrar" onclick="fazerLogin()">Entrar</button>
 
       <hr />
       <p class="help-title">Precisa de ajuda com o acesso?</p>
-      <div class="help-buttons"></div>
+      <div class="help-buttons"><a href="ajuda.html">Central de Ajuda</a><a href="suporte.html">Suporte</a></div>
     </section>
 
     <p class="status">
@@ -84,7 +85,7 @@
 
       if (cpf === CPF_VALIDO && senha === SENHA_VALIDA) {
         btn.textContent = 'Entrando...';
-        btn.style.background = '#16a34a';
+        btn.style.background = '#15803d';
         erro.style.display = 'none';
         setTimeout(() => { window.location.href = 'baterponto.html'; }, 600);
       } else {

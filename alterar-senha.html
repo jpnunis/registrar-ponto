@@ -10,7 +10,7 @@
     .senha-container { max-width: 500px; margin: auto; padding: 20px; }
     .senha-header { margin-bottom: 24px; }
     .senha-header h1 { font-size: 1.6rem; font-weight: 700; color: #1e293b; }
-    .senha-header p { color: #64748b; font-size: 0.95rem; }
+    .senha-header p { color: #526077; font-size: 0.95rem; }
     .senha-card { background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
     .campo { margin-bottom: 16px; }
     .campo label { display:block; font-weight:600; font-size:0.88rem; color:#374151; margin-bottom:6px; }
@@ -21,18 +21,19 @@
       outline:none; background:#f8fafc; transition:border-color 0.2s; font-family:inherit;
     }
     .campo-input input:focus { border-color:#2563eb; background:#fff; }
-    .toggle-senha { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94a3b8; cursor:pointer; width:auto; margin:0; padding:0; font-size:0.95rem; }
+    .toggle-senha { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:#526077; cursor:pointer; width:auto; margin:0; padding:0; font-size:0.95rem; }
     .requisitos { background:#f8fafc; border-radius:10px; padding:12px 14px; margin-bottom:20px; }
-    .requisitos p { font-size:0.8rem; color:#64748b; margin-bottom:6px; font-weight:600; }
-    .req-item { font-size:0.8rem; color:#94a3b8; display:flex; align-items:center; gap:8px; margin-bottom:3px; }
-    .req-item.ok { color:#16a34a; }
+    .requisitos p { font-size:0.8rem; color:#526077; margin-bottom:6px; font-weight:600; }
+    .req-item { font-size:0.8rem; color:#526077; display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+    .req-item.ok { color:#15803d; }
     .req-item i { font-size:0.75rem; width:14px; }
     .btn-salvar { width:100%; background:#2563eb; color:#fff; border:none; padding:14px; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:background 0.2s; }
     .btn-salvar:hover { background:#1d4ed8; }
-    .btn-salvar:disabled { background:#94a3b8; cursor:not-allowed; }
-    .feedback-ok { display:none; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; border-radius:12px; padding:14px; text-align:center; font-weight:600; margin-top:14px; }
-    .erro-msg { display:none; background:#fef2f2; color:#dc2626; border:1px solid #fecaca; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-bottom:14px; }
+    .btn-salvar:disabled { background:#526077; cursor:not-allowed; }
+    .feedback-ok { display:none; background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; border-radius:12px; padding:14px; text-align:center; font-weight:600; margin-top:14px; }
+    .erro-msg { display:none; background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; border-radius:10px; padding:10px 14px; font-size:0.88rem; font-weight:600; margin-bottom:14px; }
   </style>
+  <script src="acessibilidade.js"></script>
 </head>
 <body>
   <main class="senha-container">
@@ -45,7 +46,7 @@
       <div id="erro-msg" class="erro-msg"></div>
 
       <div class="campo">
-        <label>Senha atual</label>
+        <label for="senha-atual">Senha atual</label>
         <div class="campo-input">
           <input type="password" id="senha-atual" placeholder="••••••••" oninput="validar()" />
           <button class="toggle-senha" onclick="toggleSenha('senha-atual', this)" tabindex="-1">
@@ -55,7 +56,7 @@
       </div>
 
       <div class="campo">
-        <label>Nova senha</label>
+        <label for="nova-senha">Nova senha</label>
         <div class="campo-input">
           <input type="password" id="nova-senha" placeholder="••••••••" oninput="validar()" />
           <button class="toggle-senha" onclick="toggleSenha('nova-senha', this)" tabindex="-1">
@@ -71,7 +72,7 @@
       </div>
 
       <div class="campo">
-        <label>Confirmar nova senha</label>
+        <label for="conf-senha">Confirmar nova senha</label>
         <div class="campo-input">
           <input type="password" id="conf-senha" placeholder="••••••••" oninput="validar()" />
           <button class="toggle-senha" onclick="toggleSenha('conf-senha', this)" tabindex="-1">
@@ -89,7 +90,12 @@
     <a href="baterponto.html">Ponto</a>
     <a href="relatorio.html">Relatórios</a>
     <a href="perfil.html" class="active">Perfil</a>
+  <a href="ajuda.html">Ajuda</a>
   </nav>
+  <footer class="rodape">
+    <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
+    <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
+  </footer>
 
   <script>
     function toggleSenha(id, btn) {
