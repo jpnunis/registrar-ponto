@@ -23,8 +23,9 @@ O site nasceu como trabalho de outra disciplina, no semestre passado. Neste proj
 | `notificacoes.html` | Notificações |
 | `suporte.html` | Formulário de contato e chamados |
 | `ajuda.html` | Central de Ajuda: carrossel, cartões explicativos e abas de pesquisa |
+| `carrossel.js` | Carrossel de imagens reutilizável, usado na tela de ponto e na Central de Ajuda |
 
-Outros arquivos: `style.css` (estilos, modo escuro e alto contraste), `acessibilidade.js` (painel de acessibilidade) e `assets/` (logo, ícones e slides do carrossel em SVG).
+Outros arquivos: `style.css` (estilos, modo escuro e alto contraste), `acessibilidade.js` (painel de acessibilidade) e `assets/` (logo e ícones). As imagens do carrossel são SVG embutidos no `carrossel.js`.
 
 ## Recursos de acessibilidade
 
@@ -48,7 +49,7 @@ As escolhas ficam salvas no `localStorage`. Todos os textos atendem ao contraste
 5. **Formulários:** cada `label` passou a ser ligado ao seu campo (`for` e `id`), e as datas do relatório passaram para dd/mm/aaaa.
 6. **Painel de acessibilidade:** `acessibilidade.js` aplica as preferências como atributos no elemento `<html>` (`data-tema`, `data-contraste`, `data-fonte`, `data-movimento`) e as guarda no `localStorage`.
 7. **Modo escuro e alto contraste:** regras CSS ligadas a esses atributos, no fim do `style.css`.
-8. **Central de Ajuda:** nova página `ajuda.html`, com carrossel (botões de anterior, próximo e pausa; respeita a preferência de movimento reduzido), cartões explicativos e abas com busca por texto.
+8. **Carrossel e Central de Ajuda:** componente `carrossel.js` (botões de anterior, próximo e pausa, setas do teclado e rotação automática; respeita a preferência de movimento reduzido), usado na tela de ponto e na nova página `ajuda.html`, que também tem cartões explicativos e abas com busca por texto.
 9. **Rodapé e navegação:** rodapé em todas as páginas e item "Ajuda" na barra inferior.
 10. **Verificação final:** nova varredura de contraste nos dois temas (sem falhas), teste do painel, do carrossel e das abas, e nenhum erro de JavaScript.
 

@@ -1068,3 +1068,9 @@ html[data-tema="escuro"] :is(.record-header span,.req-item,.sidebar-menu a:not(.
 html[data-tema="escuro"] .req-item.ok, html[data-tema="escuro"] .profile-box span { color: #4ade80 !important; }
 html[data-tema="escuro"] :is(.logout,.logout-item,.logout-item .action-item-label) { color: #fca5a5 !important; }
 html[data-tema="escuro"] .sidebar-menu a.active { background: #1f3f73; color: #fff !important; }
+
+/* Carrossel: contador e foco */
+.carrossel { margin: 16px 0; }
+.carrossel:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+.car-contagem { align-self: center; flex: 0 0 auto; padding: 0 8px; white-space: nowrap; text-align: center; font-size: .85rem; color: #526077; }
+html[data-tema="escuro"] .car-contagem { color: #b6c2d4; }

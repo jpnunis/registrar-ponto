@@ -13,15 +13,8 @@
     <h1 class="ajuda-titulo">Central de Ajuda</h1>
     <p class="subtitle">Tudo o que você precisa saber para usar o Registrar Ponto</p>
 
-    <!-- Carrossel de imagens -->
-    <section class="carrossel" aria-roledescription="carrossel" aria-label="Destaques do sistema">
-      <div class="slides" aria-live="polite"><figure class="slide"><img src="assets/slide-1.svg" alt="Bata o ponto em um toque"><figcaption>Bata o ponto em um toque</figcaption></figure><figure class="slide" hidden><img src="assets/slide-2.svg" alt="Acompanhe suas horas"><figcaption>Acompanhe suas horas</figcaption></figure><figure class="slide" hidden><img src="assets/slide-3.svg" alt="Seus dados protegidos"><figcaption>Seus dados protegidos</figcaption></figure></div>
-      <div class="car-ctrl">
-        <button type="button" id="car-prev" aria-label="Slide anterior">‹</button>
-        <button type="button" id="car-play" aria-label="Pausar rotação automática">Pausar</button>
-        <button type="button" id="car-next" aria-label="Próximo slide">›</button>
-      </div>
-    </section>
+    <!-- Carrossel de imagens (carrossel.js) -->
+    <div data-carrossel></div>
 
     <!-- Cartões explicativos -->
     <h2>Como funciona</h2>
@@ -50,25 +43,8 @@
     <p>© 2026 Registrar Ponto · Projeto acadêmico de Desenvolvimento de Interfaces</p>
     <p><a href="ajuda.html">Central de Ajuda</a> · <a href="suporte.html">Suporte</a> · <a href="perfil.html">Perfil</a></p>
   </footer>
+  <script src="carrossel.js"></script>
   <script>
-    // ----- Carrossel -----
-    const slides = [...document.querySelectorAll('.slide')];
-    let atual = 0, tocando = !matchMedia('(prefers-reduced-motion: reduce)').matches, timer;
-    function ir(n) {
-      atual = (n + slides.length) % slides.length;
-      slides.forEach((s, i) => s.hidden = i !== atual);
-    }
-    function ciclo() { clearInterval(timer); if (tocando) timer = setInterval(() => ir(atual + 1), 5000); }
-    document.getElementById('car-prev').onclick = () => ir(atual - 1);
-    document.getElementById('car-next').onclick = () => ir(atual + 1);
-    const btnPlay = document.getElementById('car-play');
-    btnPlay.onclick = () => {
-      tocando = !tocando; btnPlay.textContent = tocando ? 'Pausar' : 'Reproduzir';
-      btnPlay.setAttribute('aria-label', tocando ? 'Pausar rotação automática' : 'Retomar rotação automática'); ciclo();
-    };
-    btnPlay.textContent = tocando ? 'Pausar' : 'Reproduzir';
-    ciclo();
-
     // ----- Abas + pesquisa -----
     let cat = 'todas';
     const busca = document.getElementById('busca');
